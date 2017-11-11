@@ -6,6 +6,10 @@
 	<string name="action_settings">Einstellungen</string>
 	<string name="action_add_product">Produkt hinzufügen</string>
 	
+	<string name="drawer_open">Navigationsmenü öffnen</string>
+	<string name="drawer_close">Navigationsmenü schließen</string>
+	<string name="navigation">Navigationsmenü</string>
+	
 	<string name="editText_hint_name">Name</string>
 	<string name="editText_hint_water">Wasser</string>
 	<string name="editText_hint_tags">Tags</string>
@@ -30,5 +34,11 @@
 	<string name="dialog_button_positive">Ändern</string>
 	<string name="dialog_2_button_positive">Erstellen</string>
 	<string name="dialog_button_negative">Abbrechen</string>
+	
+	<string-array name="fragments_string_array">
+		<item>Produktliste</item>
+		<item>Barcode scannen</item>
+		<item>Informationen</item>
+	</string-array>
 	
 </resources>
