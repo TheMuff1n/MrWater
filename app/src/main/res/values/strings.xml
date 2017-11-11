@@ -3,7 +3,7 @@
 	<string name="app_name">Mr. Water</string>
 	
 	<string name="hello_world">Hello world!</string>
-	<string name="action_settings">Settings</string>
+	<string name="action_settings">Einstellungen</string>
 	<string name="action_add_product">Produkt hinzufügen</string>
 	
 	<string name="editText_hint_name">Name</string>
