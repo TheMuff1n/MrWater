@@ -35,6 +35,8 @@
 	<string name="dialog_2_button_positive">Erstellen</string>
 	<string name="dialog_button_negative">Abbrechen</string>
 	
+	<string name="info_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</string>
+	
 	<string-array name="fragments_string_array">
 		<item>Produktliste</item>
 		<item>Barcode scannen</item>

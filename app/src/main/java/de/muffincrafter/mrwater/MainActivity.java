@@ -14,6 +14,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.os.PersistableBundle;
 import android.content.res.Configuration;
+import android.widget.Adapter;
+import de.muffincrafter.mrwater.Fragments.InformationFragment;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -104,7 +106,29 @@ public class MainActivity extends AppCompatActivity
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
-					Toast.makeText(MainActivity.this, "Time for an upgrade!", Toast.LENGTH_LONG).show();
+					switch (position)
+					{
+						case 0:
+							showFragment(new ProductsFragment());
+							break;
+						case 1:
+							// show barcode scanner
+							break;
+						case 2:
+							showFragment(new InformationFragment());
+							break;
+
+						default:
+					}
+					
+					drawerLayout.closeDrawer(drawerList);
+				}
+
+				private void showFragment(Fragment fragment)
+				{
+					getSupportFragmentManager().beginTransaction()
+						.replace(R.id.fragment_container, fragment)
+						.commit();
 				}
 			});
 	}
