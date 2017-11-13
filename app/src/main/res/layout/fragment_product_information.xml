@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:layout_marginLeft="@dimen/activity_horizontal_margin"
+	android:layout_marginRight="@dimen/activity_horizontal_margin"
+	android:layout_marginTop="@dimen/activity_vertical_margin"
+	android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+	
+	<TextView
+		android:id="@+id/product_name"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/product_name" />
+	
+	<TextView
+		android:id="@+id/product_water"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10sp"
+		android:text="@string/product_water" />
+	
+	<TextView
+		android:id="@+id/product_tags"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10sp"
+		android:text="@string/product_tags" />
+	
+	<TextView
+		android:id="@+id/product_barcode"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10sp"
+		android:text="@string/product_barcode" />
+    
+</LinearLayout>

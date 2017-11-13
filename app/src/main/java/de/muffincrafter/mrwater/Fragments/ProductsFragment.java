@@ -27,6 +27,7 @@ import de.muffincrafter.mrwater.R;
 import java.util.ArrayList;
 import java.util.List;
 import android.view.MenuInflater;
+import android.support.v4.app.FragmentTransaction;
 
 public class ProductsFragment extends Fragment
 {
@@ -477,5 +478,9 @@ public class ProductsFragment extends Fragment
 	private void openProductInfos(Product product)
 	{
 		// Fenster öffnen
+		FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+		fragmentTransaction.addToBackStack(null);
+		fragmentTransaction.replace(R.id.fragment_container, new ProductInformationFragment(product))
+		.commit();
 	}
 }

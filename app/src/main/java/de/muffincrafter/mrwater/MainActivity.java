@@ -16,17 +16,20 @@ import android.os.PersistableBundle;
 import android.content.res.Configuration;
 import android.widget.Adapter;
 import de.muffincrafter.mrwater.Fragments.InformationFragment;
+import de.muffincrafter.mrwater.Fragments.ProductInformationFragment;
 
 public class MainActivity extends AppCompatActivity
 {
 	public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-	private ActionBarDrawerToggle drawerToggle;
+	public ActionBarDrawerToggle drawerToggle;
 	private DrawerLayout drawerLayout;
 	private String activityTitle;
 
 	private ListView drawerList;
 	private ArrayAdapter<String> adapter;
+	
+	private Fragment currentFragent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -43,9 +46,7 @@ public class MainActivity extends AppCompatActivity
 		drawerList = (ListView) findViewById(R.id.navList);
 		initializeDrawer();
 
-		getSupportFragmentManager().beginTransaction()
-			.replace(R.id.fragment_container, new ProductsFragment())
-			.commit();
+		showFragment(new ProductsFragment());
 	}
 
 	@Override
@@ -123,13 +124,18 @@ public class MainActivity extends AppCompatActivity
 					
 					drawerLayout.closeDrawer(drawerList);
 				}
-
-				private void showFragment(Fragment fragment)
-				{
-					getSupportFragmentManager().beginTransaction()
-						.replace(R.id.fragment_container, fragment)
-						.commit();
-				}
 			});
+	}
+	
+	public void showFragment(Fragment fragment)
+	{
+		if (fragment instanceof ProductInformationFragment) {
+			
+		}
+		getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, fragment)
+			.commit();
+			currentFragent = fragment;
+			
 	}
 }
