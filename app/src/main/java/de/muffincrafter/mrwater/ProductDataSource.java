@@ -123,7 +123,7 @@ public class ProductDataSource
 		List<Product> productList = new ArrayList<>();
 
 		Cursor cursor = database.query(ProductDbHelper.TABLE_PRODUCTS,
-									   columns, null, null, null, null, null);
+									   columns, null, null, null, null, ProductDbHelper.COLUMN_NAME + " COLLATE NOCASE ASC");
 
 		cursor.moveToFirst();
 		Product product;
@@ -141,12 +141,12 @@ public class ProductDataSource
 		return productList;
 	}
 	
-	public List<Product> getFilteredProducts(String searchTerm) {
+	public List<Product> getFilteredProducts(String searchTerm, String column, String orderBy) {
 		List<Product> productList = new ArrayList<>();
 		
 		Cursor cursor = database.query(ProductDbHelper.TABLE_PRODUCTS,
-		columns, ProductDbHelper.COLUMN_NAME + " LIKE " + "'%" + searchTerm + "%'",
-		null, null, null, null);
+		columns, column + " LIKE " + "'%" + searchTerm + "%'",
+		null, null, null, orderBy);
 		
 		cursor.moveToFirst();
 		Product product;

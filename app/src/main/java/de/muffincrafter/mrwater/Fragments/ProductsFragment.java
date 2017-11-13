@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.view.MenuInflater;
 import android.support.v4.app.FragmentTransaction;
+import de.muffincrafter.mrwater.ProductDbHelper;
 
 public class ProductsFragment extends Fragment
 {
@@ -130,7 +131,7 @@ public class ProductsFragment extends Fragment
 
 	private void showFilteredListEntries(String searchTerm)
 	{
-		List<Product> productList = dataSource.getFilteredProducts(searchTerm);
+		List<Product> productList = dataSource.getFilteredProducts(searchTerm, ProductDbHelper.COLUMN_NAME, ProductDbHelper.COLUMN_NAME + " COLLATE NOCASE ASC");
 
 		ArrayAdapter<Product> adapter = (ArrayAdapter<Product>) mProductsListView.getAdapter();
 
@@ -477,7 +478,6 @@ public class ProductsFragment extends Fragment
 
 	private void openProductInfos(Product product)
 	{
-		// Fenster öffnen
 		FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
 		fragmentTransaction.addToBackStack(null);
 		fragmentTransaction.replace(R.id.fragment_container, new ProductInformationFragment(product))

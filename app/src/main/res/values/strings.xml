@@ -48,5 +48,6 @@
 	<string name="product_water">Wasser:</string>
 	<string name="product_tags">Tags:</string>
 	<string name="product_barcode">Barcode:</string>
+	<string name="similar_products">Ähnliche Produkte:</string>
 	
 </resources>
