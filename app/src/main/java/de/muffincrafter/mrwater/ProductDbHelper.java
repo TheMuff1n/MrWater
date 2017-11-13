@@ -10,13 +10,14 @@ public class ProductDbHelper extends SQLiteOpenHelper
 	private static final String LOG_TAG = ProductDbHelper.class.getSimpleName();
 
 	public static final String DB_NAME = "products.db";
-	public static final int DB_VERSION = 1;
+	public static final int DB_VERSION = 2;
 
 	public static final String TABLE_PRODUCTS = "products";
 
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME = "name";
 	public static final String COLUMN_WATER = "water";
+	public static final String COLUMN_BARCODE = "barcode";
 	public static final String COLUMN_TAGS = "tags";
 
 	public static final String SQL_CREATE =
@@ -24,7 +25,8 @@ public class ProductDbHelper extends SQLiteOpenHelper
 	"(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
 	COLUMN_NAME + " TEXT NOT NULL, " +
 	COLUMN_WATER + " INTEGER NOT NULL, " +
-	COLUMN_TAGS + " TEXT NOT NULL);";
+	COLUMN_BARCODE + " INTEGER, " +
+	COLUMN_TAGS + " TEXT);";
 
 	public static final String SQL_DROP = "DROP TABLE IF EXISTS " + TABLE_PRODUCTS;
 

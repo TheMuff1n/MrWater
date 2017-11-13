@@ -5,13 +5,15 @@ public class Product
 	private String name;
 	private int water;
 	private String tags;
+	private int barcode;
 	private long id;
 
-	public Product(String name, int quantity, String tags, long id)
+	public Product(String name, int quantity, String tags, int barcode, long id)
 	{
 		this.name = name;
 		this.water = quantity;
 		this.tags = tags;
+		this.barcode = barcode;
 		this.id = id;
 	}
 
@@ -43,6 +45,16 @@ public class Product
 	public void setTags(String tags)
 	{
 		this.tags = tags;
+	}
+
+	public int getBarcode()
+	{
+		return barcode;
+	}
+
+	public void setBarcode(int barcode)
+	{
+		this.barcode = barcode;
 	}
 
 	public long getId()

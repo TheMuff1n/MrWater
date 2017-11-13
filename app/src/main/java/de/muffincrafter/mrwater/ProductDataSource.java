@@ -20,6 +20,7 @@ public class ProductDataSource
 		ProductDbHelper.COLUMN_ID,
 		ProductDbHelper.COLUMN_NAME,
 		ProductDbHelper.COLUMN_WATER,
+		ProductDbHelper.COLUMN_BARCODE,
 		ProductDbHelper.COLUMN_TAGS
 	};
 
@@ -42,12 +43,13 @@ public class ProductDataSource
 		Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
 	}
 
-	public Product createShoppingMemo(String name, int water, String tags)
+	public Product createShoppingMemo(String name, int water, String tags, int barcode)
 	{
 		ContentValues values = new ContentValues();
 		values.put(ProductDbHelper.COLUMN_NAME, name);
 		values.put(ProductDbHelper.COLUMN_WATER, water);
 		values.put(ProductDbHelper.COLUMN_TAGS, tags);
+		values.put(ProductDbHelper.COLUMN_BARCODE, barcode);
 
 		long insertId = database.insert(ProductDbHelper.TABLE_PRODUCTS, null, values);
 
@@ -62,12 +64,13 @@ public class ProductDataSource
 		return product;
 	}
 
-	public Product updateProduct(long id, String newName, int newWater, String newTags)
+	public Product updateProduct(long id, String newName, int newWater, String newTags, int newBarcode)
 	{
 		ContentValues values = new ContentValues();
 		values.put(ProductDbHelper.COLUMN_NAME, newName);
 		values.put(ProductDbHelper.COLUMN_WATER, newWater);
 		values.put(ProductDbHelper.COLUMN_TAGS, newTags);
+		values.put(ProductDbHelper.COLUMN_BARCODE, newBarcode);
 
 		database.update(ProductDbHelper.TABLE_PRODUCTS,
 						values,
@@ -102,13 +105,15 @@ public class ProductDataSource
 		int idName = cursor.getColumnIndex(ProductDbHelper.COLUMN_NAME);
 		int idWater = cursor.getColumnIndex(ProductDbHelper.COLUMN_WATER);
 		int idTags = cursor.getColumnIndex(ProductDbHelper.COLUMN_TAGS);
+		int idBarcode = cursor.getColumnIndex(ProductDbHelper.COLUMN_BARCODE);
 
 		String name = cursor.getString(idName);
 		int water = cursor.getInt(idWater);
 		String tags = cursor.getString(idTags);
+		int barcode = cursor.getInt(idBarcode);
 		long id = cursor.getLong(idIndex);
 
-		Product product = new Product(name, water, tags, id);
+		Product product = new Product(name, water, tags, barcode, id);
 
 		return product;
 	}

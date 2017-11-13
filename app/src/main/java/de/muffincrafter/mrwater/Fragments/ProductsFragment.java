@@ -41,7 +41,7 @@ public class ProductsFragment extends Fragment
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+
 		setHasOptionsMenu(true);
 
 		Log.d(LOG_TAG, "Das Datenquellen-Objekt wird angelegt.");
@@ -53,7 +53,7 @@ public class ProductsFragment extends Fragment
 							 Bundle savedInstanceState)
 	{
 		rootView = inflater.inflate(R.layout.fragment_main, container, false);
-		
+
 		initializeProductsListView();
 
 		activateSearchButton();
@@ -310,6 +310,9 @@ public class ProductsFragment extends Fragment
 		final EditText editTextNewTags = (EditText) dialogsView.findViewById(R.id.editText_new_tags);
 		editTextNewTags.setText(product.getTags());
 
+		final EditText editTextNewBarcode =(EditText) dialogsView.findViewById(R.id.editText_new_barcode);
+		editTextNewBarcode.setText(String.valueOf(product.getBarcode()));
+
 		builder.setView(dialogsView)
 			.setTitle(R.string.dialog_title)
 			.setPositiveButton(R.string.dialog_button_positive, new DialogInterface.OnClickListener() {
@@ -319,6 +322,7 @@ public class ProductsFragment extends Fragment
 					String name = editTextNewName.getText().toString();
 					String waterString = editTextNewWater.getText().toString();
 					String tags = editTextNewTags.getText().toString();
+					String barcodeString = editTextNewBarcode.getText().toString();
 
 					if ((TextUtils.isEmpty(name)) || (TextUtils.isEmpty(waterString)))
 					{
@@ -327,8 +331,12 @@ public class ProductsFragment extends Fragment
 					}
 
 					int water = Integer.parseInt(waterString);
-
-					Product updatedProduct = dataSource.updateProduct(product.getId(), name, water, tags);
+					int barcode = 0;
+					if (!TextUtils.isEmpty(barcodeString))
+					{
+						barcode = Integer.parseInt(barcodeString);
+					}
+					Product updatedProduct = dataSource.updateProduct(product.getId(), name, water, tags, barcode);
 
 					Log.d(LOG_TAG, "Alter Eintrag - ID: " + product.getId() + " Inhalt: " + product.toString());
 					Log.d(LOG_TAG, "Neuer Eintrag - ID: " + updatedProduct.getId() + " Inhalt: " + updatedProduct.toString());
@@ -361,6 +369,7 @@ public class ProductsFragment extends Fragment
 		final EditText editTextName = (EditText) dialogsView.findViewById(R.id.editText_name);
 		final EditText editTextWater = (EditText) dialogsView.findViewById(R.id.editText_water);
 		final EditText editTextTags = (EditText) dialogsView.findViewById(R.id.editText_tags);
+		final EditText editTextBarcode = (EditText) dialogsView.findViewById(R.id.editText_barcode);
 
 		builder.setView(dialogsView)
 			.setTitle(R.string.dialog_2_title)
@@ -368,36 +377,7 @@ public class ProductsFragment extends Fragment
 				@Override
 				public void onClick(DialogInterface dialog, int id)
 				{
-					String name = editTextName.getText().toString();
-					String waterString = editTextWater.getText().toString();
-					String tags = editTextTags.getText().toString();
 
-					if (TextUtils.isEmpty(waterString))
-					{
-						editTextWater.setError(getString(R.string.editText_errorMessage));
-						return;
-					}
-					if (TextUtils.isEmpty(name))
-					{
-						editTextName.setError(getString(R.string.editText_errorMessage));
-						return;
-					}
-					if (TextUtils.isEmpty(tags))
-					{
-						editTextTags.setError(getString(R.string.editText_errorMessage));
-						return;
-					}
-
-					int water = Integer.parseInt(waterString);
-
-					Product product = dataSource.createShoppingMemo(name, water, tags);
-
-					Log.d(LOG_TAG, "Neuer Eintrag - ID: " + product.getId() + " Inhalt: " + product.toString());
-
-					showAllListEntries();
-					dialog.dismiss();
-
-					hideKeyBoard();
 				}
 			})
 			.setNegativeButton(R.string.dialog_button_negative, new DialogInterface.OnClickListener() {
@@ -409,7 +389,53 @@ public class ProductsFragment extends Fragment
 				}
 			});
 
-		return builder.create();
+		AlertDialog alertDialog = builder.create();
+
+		alertDialog
+			.setOnShowListener(new DialogInterface.OnShowListener() {
+				@Override
+				public void onShow(final DialogInterface dialog)
+				{
+					Button positiveButton =((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+					positiveButton.setOnClickListener(new View.OnClickListener() {
+							@Override
+							public void onClick(View view)
+							{
+								String name = editTextName.getText().toString();
+								String waterString = editTextWater.getText().toString();
+								String tags = editTextTags.getText().toString();
+								String barcodeString = editTextBarcode.getText().toString();
+
+								if (TextUtils.isEmpty(name))
+								{
+									editTextName.setError(getString(R.string.editText_errorMessage));
+									return;
+								}
+								if (TextUtils.isEmpty(waterString))
+								{
+									editTextWater.setError(getString(R.string.editText_errorMessage));
+									return;
+								}
+
+								int water = Integer.parseInt(waterString);
+								int barcode = 0;
+								if (!TextUtils.isEmpty(barcodeString))
+								{
+									barcode = Integer.parseInt(barcodeString);
+								}
+								Product product = dataSource.createShoppingMemo(name, water, tags, barcode);
+
+								Log.d(LOG_TAG, "Neuer Eintrag - ID: " + product.getId() + " Inhalt: " + product.toString());
+
+								showAllListEntries();
+								hideKeyBoard();
+								dialog.dismiss();
+							}
+						});
+				}
+			});
+
+		return alertDialog;
 	}
 
 	private void initializeProductsListView()

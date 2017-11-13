@@ -31,6 +31,7 @@
 	<string name="dialog_title_water">Wasser:</string>
 	<string name="dialog_title_name">Name:</string>
 	<string name="dialog_title_tags">Tags:</string>
+	<string name="dialog_title_barcode">Barcode:</string>
 	<string name="dialog_button_positive">Ändern</string>
 	<string name="dialog_2_button_positive">Erstellen</string>
 	<string name="dialog_button_negative">Abbrechen</string>
