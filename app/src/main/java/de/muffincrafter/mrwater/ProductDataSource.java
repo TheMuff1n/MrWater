@@ -43,7 +43,7 @@ public class ProductDataSource
 		Log.d(LOG_TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
 	}
 
-	public Product createShoppingMemo(String name, int water, String tags, int barcode)
+	public Product createShoppingMemo(String name, int water, String tags, String barcode)
 	{
 		ContentValues values = new ContentValues();
 		values.put(ProductDbHelper.COLUMN_NAME, name);
@@ -64,7 +64,7 @@ public class ProductDataSource
 		return product;
 	}
 
-	public Product updateProduct(long id, String newName, int newWater, String newTags, int newBarcode)
+	public Product updateProduct(long id, String newName, int newWater, String newTags, String newBarcode)
 	{
 		ContentValues values = new ContentValues();
 		values.put(ProductDbHelper.COLUMN_NAME, newName);
@@ -110,7 +110,7 @@ public class ProductDataSource
 		String name = cursor.getString(idName);
 		int water = cursor.getInt(idWater);
 		String tags = cursor.getString(idTags);
-		int barcode = cursor.getInt(idBarcode);
+		String barcode = cursor.getString(idBarcode);
 		long id = cursor.getLong(idIndex);
 
 		Product product = new Product(name, water, tags, barcode, id);

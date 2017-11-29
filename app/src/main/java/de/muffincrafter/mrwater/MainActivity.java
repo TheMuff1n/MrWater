@@ -17,6 +17,8 @@ import android.content.res.Configuration;
 import android.widget.Adapter;
 import de.muffincrafter.mrwater.Fragments.InformationFragment;
 import de.muffincrafter.mrwater.Fragments.ProductInformationFragment;
+import de.muffincrafter.mrwater.Fragments.BarcodeFragment;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity
 							showFragment(new ProductsFragment());
 							break;
 						case 1:
-							// show barcode scanner
+							showFragment(new BarcodeFragment());
 							break;
 						case 2:
 							showFragment(new InformationFragment());
@@ -138,4 +140,12 @@ public class MainActivity extends AppCompatActivity
 			currentFragent = fragment;
 			
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+		fragment.onActivityResult(requestCode, resultCode, data);
+	}
+	
 }

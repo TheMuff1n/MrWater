@@ -34,7 +34,7 @@ public class ProductsFragment extends Fragment
 {
 	public static final String LOG_TAG = ProductsFragment.class.getSimpleName();
 
-	private ProductDataSource dataSource;
+	public ProductDataSource dataSource;
 
 	private View rootView;
 	private ListView mProductsListView;
@@ -324,7 +324,7 @@ public class ProductsFragment extends Fragment
 					String name = editTextNewName.getText().toString();
 					String waterString = editTextNewWater.getText().toString();
 					String tags = editTextNewTags.getText().toString();
-					String barcodeString = editTextNewBarcode.getText().toString();
+					String barcode = editTextNewBarcode.getText().toString();
 
 					if ((TextUtils.isEmpty(name)) || (TextUtils.isEmpty(waterString)))
 					{
@@ -333,11 +333,7 @@ public class ProductsFragment extends Fragment
 					}
 
 					int water = Integer.parseInt(waterString);
-					int barcode = 0;
-					if (!TextUtils.isEmpty(barcodeString))
-					{
-						barcode = Integer.parseInt(barcodeString);
-					}
+					
 					Product updatedProduct = dataSource.updateProduct(product.getId(), name, water, tags, barcode);
 
 					Log.d(LOG_TAG, "Alter Eintrag - ID: " + product.getId() + " Inhalt: " + product.toString());
@@ -406,7 +402,7 @@ public class ProductsFragment extends Fragment
 								String name = editTextName.getText().toString();
 								String waterString = editTextWater.getText().toString();
 								String tags = editTextTags.getText().toString();
-								String barcodeString = editTextBarcode.getText().toString();
+								String barcode = editTextBarcode.getText().toString();
 
 								if (TextUtils.isEmpty(name))
 								{
@@ -420,11 +416,7 @@ public class ProductsFragment extends Fragment
 								}
 
 								int water = Integer.parseInt(waterString);
-								int barcode = 0;
-								if (!TextUtils.isEmpty(barcodeString))
-								{
-									barcode = Integer.parseInt(barcodeString);
-								}
+								
 								Product product = dataSource.createShoppingMemo(name, water, tags, barcode);
 
 								Log.d(LOG_TAG, "Neuer Eintrag - ID: " + product.getId() + " Inhalt: " + product.toString());

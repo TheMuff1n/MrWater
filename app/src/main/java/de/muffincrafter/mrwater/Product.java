@@ -5,10 +5,10 @@ public class Product
 	private String name;
 	private int water;
 	private String tags;
-	private int barcode;
+	private String barcode;
 	private long id;
 
-	public Product(String name, int quantity, String tags, int barcode, long id)
+	public Product(String name, int quantity, String tags, String barcode, long id)
 	{
 		this.name = name;
 		this.water = quantity;
@@ -47,12 +47,12 @@ public class Product
 		this.tags = tags;
 	}
 
-	public int getBarcode()
+	public String getBarcode()
 	{
 		return barcode;
 	}
 
-	public void setBarcode(int barcode)
+	public void setBarcode(String barcode)
 	{
 		this.barcode = barcode;
 	}
